@@ -24,5 +24,6 @@ export interface IMeasurementAmount {
 
 export enum ShapeType {
     pentagon,
-    square
+    square,
+    triangle
 }

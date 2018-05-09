@@ -9,12 +9,15 @@ export class GraphicsService implements IGraphicsService {
         var shape = this.Parse(command);
 
         switch(shape.shapeType) {
-            case ShapeType.square:
-                shape.points = this.RegularPolygon(shape.measurementAmounts[0].amount, 4, 0);                                
-                break;
             case ShapeType.pentagon:
                 shape.points = this.RegularPolygon(shape.measurementAmounts[0].amount, 5, 0);
-                break;                
+                break; 
+            case ShapeType.square:
+                shape.points = this.RegularPolygon(shape.measurementAmounts[0].amount, 4, 0);                                
+                break; 
+            case ShapeType.triangle:
+                shape.points = this.RegularPolygon(shape.measurementAmounts[0].amount, 3, 0);
+                break;                           
         }
 
         return shape;

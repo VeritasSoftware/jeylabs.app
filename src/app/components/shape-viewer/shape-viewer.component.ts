@@ -18,7 +18,7 @@ export class ShapeViewerComponent implements OnInit {
     let ctx: CanvasRenderingContext2D =
     this.canvasRef.nativeElement.getContext('2d');
 
-    var result = this.graphicsService.Draw("Draw a pentagon with a side length of 150");
+    var result = this.graphicsService.Draw("Draw a triangle with a side length of 150");
 
     ctx.beginPath();
     ctx.moveTo(result.points[0].X, result.points[0].Y);
