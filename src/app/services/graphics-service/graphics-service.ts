@@ -10,26 +10,16 @@ export class GraphicsService implements IGraphicsService {
 
         switch(shape.shapeType) {
             case ShapeType.square:
-                var pt = new Point(0, 0);
-                shape.points.push(pt);
-
-                pt = new Point(shape.measurementAmounts[0].amount, 0);
-                shape.points.push(pt);
-
-                pt = new Point(shape.measurementAmounts[0].amount, shape.measurementAmounts[0].amount);
-                shape.points.push(pt);
-
-                pt = new Point(0, shape.measurementAmounts[0].amount);
-                shape.points.push(pt);
-
-                shape.points.forEach(pt => pt.X = pt.X + 50);
-
+                shape.points = this.RegularPolygon(shape.measurementAmounts[0].amount, 4, 0);                                
                 break;
+            case ShapeType.pentagon:
+                shape.points = this.RegularPolygon(shape.measurementAmounts[0].amount, 5, 0);
+                break;                
         }
 
         return shape;
     }
-    
+
     Parse(command: string): IShape {
         var matches = command.match(/^Draw an? ([a-zA-Z\s]+?) (?:(?:with|and )? an? ([a-zA-Z\s]+?) of (\d+))+$/i);        
         
@@ -54,6 +44,25 @@ export class GraphicsService implements IGraphicsService {
         }
                 
         return shape;
+    }
+
+    RegularPolygon(radius: number, sides: number, start: number): Array<Point> {
+        var x_center = radius;
+        var y_center = radius;
+        var angle = start;
+        var angle_increment = (2 * Math.PI)/sides;
+
+        var points = new Array<Point>();
+
+        for (var i=0; i<sides; i++){
+            var p = new Point(x_center + (radius * Math.cos(angle)), y_center + (radius * Math.sin(angle)));
+            
+            points.push(p);
+
+            angle = angle + angle_increment;
+        }
+
+        return points;
     }
 }
 
