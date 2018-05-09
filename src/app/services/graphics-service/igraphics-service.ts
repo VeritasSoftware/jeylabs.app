@@ -7,10 +7,16 @@ export interface IShape{
     maxX: number;
     maxY: number;
 
+    measurementAmounts: Array<IMeasurementAmount>;
     points: Array<IPoint>;
 }
 
 export interface IPoint {
     X:number;
     Y:number;
+}
+
+export interface IMeasurementAmount {
+    measurement: string;
+    amount: number;
 }

@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 
+import { GraphicsServiceModule } from './services/graphics-service/graphics-service.module'
+
 
 @NgModule({
   declarations: [
@@ -12,7 +14,7 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [GraphicsServiceModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
