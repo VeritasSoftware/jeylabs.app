@@ -4,6 +4,7 @@ export interface IGraphicsService{
 
 export interface IShape{
     name: string;
+    shapeType: ShapeType;
     maxX: number;
     maxY: number;
 
@@ -19,4 +20,8 @@ export interface IPoint {
 export interface IMeasurementAmount {
     measurement: string;
     amount: number;
+}
+
+export enum ShapeType {
+    square
 }

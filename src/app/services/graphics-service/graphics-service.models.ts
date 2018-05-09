@@ -1,7 +1,8 @@
-import { IGraphicsService, IShape, IPoint, IMeasurementAmount } from './igraphics-service'
+import { IGraphicsService, IShape, IPoint, IMeasurementAmount, ShapeType } from './igraphics-service'
 
 export class Shape implements IShape {
     name: string;
+    shapeType: ShapeType
     maxX: number;
     maxY: number;
 
@@ -10,6 +11,12 @@ export class Shape implements IShape {
 }
 
 export class Point implements IPoint {
+
+    constructor(x:number, y: number){
+        this.X = x;
+        this.Y = y;
+    }
+
     X:number;
     Y:number;
 }
