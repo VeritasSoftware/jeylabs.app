@@ -1,5 +1,5 @@
 export interface IGraphicsService{
-    Parse(command: string): IShape;
+    Draw(command: string): IShape;
 }
 
 export interface IShape{

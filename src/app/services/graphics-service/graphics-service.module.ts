@@ -6,6 +6,7 @@ import { GraphicsService } from './graphics-service';
   imports: [
     CommonModule
   ],
-  declarations: [GraphicsService]
+  exports: [GraphicsService],
+  declarations: []
 })
 export class GraphicsServiceModule { }

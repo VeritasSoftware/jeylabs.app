@@ -5,8 +5,33 @@ import { Shape, Point, MeasurementAmount } from './graphics-service.models'
 
 @Injectable()
 export class GraphicsService implements IGraphicsService {
+    Draw(command: string): IShape {
+        var shape = this.Parse(command);
+
+        switch(shape.shapeType) {
+            case ShapeType.square:
+                var pt = new Point(0, 0);
+                shape.points.push(pt);
+
+                pt = new Point(shape.measurementAmounts[0].amount, 0);
+                shape.points.push(pt);
+
+                pt = new Point(shape.measurementAmounts[0].amount, shape.measurementAmounts[0].amount);
+                shape.points.push(pt);
+
+                pt = new Point(0, shape.measurementAmounts[0].amount);
+                shape.points.push(pt);
+
+                shape.points.forEach(pt => pt.X = pt.X + 50);
+
+                break;
+        }
+
+        return shape;
+    }
+    
     Parse(command: string): IShape {
-        var matches = command.match(/^Draw an? ([a-zA-Z\s]+?) ((?:with|and )? ([a-zA-Z\s]+?) of (\d+))+$/i);        
+        var matches = command.match(/^Draw an? ([a-zA-Z\s]+?) (?:(?:with|and )? an? ([a-zA-Z\s]+?) of (\d+))+$/i);        
         
         var shape = new Shape();
         shape.measurementAmounts = new Array<MeasurementAmount>();
@@ -27,26 +52,7 @@ export class GraphicsService implements IGraphicsService {
 
             shape.measurementAmounts.push(measurementAmount);
         }
-
-        switch(shape.shapeType) {
-            case ShapeType.square:
-                var pt = new Point(0, 0);
-                shape.points.push(pt);
-
-                pt = new Point(shape.measurementAmounts[0].amount, 0);
-                shape.points.push(pt);
-
-                pt = new Point(shape.measurementAmounts[0].amount, shape.measurementAmounts[0].amount);
-                shape.points.push(pt);
-
-                pt = new Point(0, shape.measurementAmounts[0].amount);
-                shape.points.push(pt);
-
-                shape.points.forEach(pt => pt.X = pt.X + 50);
-
-                break;
-        }
-        
+                
         return shape;
     }
 }

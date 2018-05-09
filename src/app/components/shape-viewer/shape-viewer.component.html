@@ -1,3 +1,20 @@
-<p>
-  shape-viewer works!
-</p>
+<div class="panel panel-primary" style="text-align:center">
+    <div class="panel-heading">
+      Shape Viewer
+    </div>
+    <div class="panel-body">
+        <table style="width:100%">        
+            <tr>
+              <td>
+                  <div class="form-group">
+                      <label for="Command" class="col-md-4">Enter natural language command</label>                                      
+                      <input type="text" id="Command" class="form-control" [(ngModel)]="command" name="Command" placeholder="Command" />                  
+                  </div>
+              </td>
+            </tr>            
+          </table>
+    </div>
+  </div>
+  <canvas #myCanvas width="500" height="500"></canvas>
+
+
