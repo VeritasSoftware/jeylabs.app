@@ -15,6 +15,19 @@
 
 ![Screenshot](https://github.com/VeritasSoftware/jeylabs.app/blob/master/Screenshot.JPG)
 
+**Natural language commands**
+
+| Shape  | Supported Command |
+| ------ | ------- |
+| Triangle | Draw a triangle with a side length of 150 |
+| Square | Draw a square with a side length of 150 |
+| Pentagon | Draw a pentagon with a side length of 150 |
+| Hexagon | Draw a hexagon with a side length of 150 |
+| Heptagon | Draw a heptagon with a side length of 150 |
+| Octogon | Draw an octogon with a side length of 150 |
+| Circle | Draw a circle with a radius of 150 |
+| Oval | Draw an oval with a major axis of 150 and a minor axis of 100 |
+
 This Angular 5 project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.3.
 
 ## Development server
