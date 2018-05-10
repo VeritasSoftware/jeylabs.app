@@ -10,28 +10,37 @@ export class GraphicsService implements IGraphicsService {
 
         switch(shape.shapeType) {  
             case ShapeType.circle:
-                shape.points = this.RegularPolygon(shape.measurementAmounts[0].amount, 360, 0);
+                var radius = shape.measurementAmounts.find(x => x.measurement == "radius").amount;
+                shape.points = this.RegularPolygon(radius, 360, 0);
                 break;          
             case ShapeType.heptagon:
-                shape.points = this.RegularPolygon(shape.measurementAmounts[0].amount, 7, 0);
+                var sideLength = shape.measurementAmounts.find(x => x.measurement == "side length").amount;
+                shape.points = this.RegularPolygon(sideLength, 7, 0);
                 break;
             case ShapeType.hexagon:
-                shape.points = this.RegularPolygon(shape.measurementAmounts[0].amount, 6, 0);
+                var sideLength = shape.measurementAmounts.find(x => x.measurement == "side length").amount;
+                shape.points = this.RegularPolygon(sideLength, 6, 0);
                 break;
             case ShapeType.octogon:
-                shape.points = this.RegularPolygon(shape.measurementAmounts[0].amount, 8, 0);
+                var sideLength = shape.measurementAmounts.find(x => x.measurement == "side length").amount;
+                shape.points = this.RegularPolygon(sideLength, 8, 0);
                 break; 
-            case ShapeType.oval:
-                shape.points = this.Oval(shape.measurementAmounts[0].amount, shape.measurementAmounts[1].amount);
+            case ShapeType.oval:                
+                var majorAxis = shape.measurementAmounts.find(x => x.measurement == "major axis").amount;
+                var minorAxis = shape.measurementAmounts.find(x => x.measurement == "minor axis").amount;
+                shape.points = this.Oval(majorAxis, minorAxis);
                 break;                               
             case ShapeType.pentagon:
-                shape.points = this.RegularPolygon(shape.measurementAmounts[0].amount, 5, 0);
+                var sideLength = shape.measurementAmounts.find(x => x.measurement == "side length").amount;
+                shape.points = this.RegularPolygon(sideLength, 5, 0);
                 break; 
             case ShapeType.square:
-                shape.points = this.RegularPolygon(shape.measurementAmounts[0].amount, 4, 0);                                
+                var sideLength = shape.measurementAmounts.find(x => x.measurement == "side length").amount;
+                shape.points = this.RegularPolygon(sideLength, 4, 0);                                
                 break; 
             case ShapeType.triangle:
-                shape.points = this.RegularPolygon(shape.measurementAmounts[0].amount, 3, 0);
+                var sideLength = shape.measurementAmounts.find(x => x.measurement == "side length").amount;
+                shape.points = this.RegularPolygon(sideLength, 3, 0);
                 break;                           
         }
 
