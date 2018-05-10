@@ -35,7 +35,7 @@ export class GraphicsService implements IGraphicsService {
                 shape.points = this.RegularPolygon(sideLength, 5, 0);
                 break; 
             case ShapeType.square:
-                var sideLength = shape.measurementAmounts.find(x => x.measurement == "side length").amount;
+                var sideLength = this.GetMeasurement("side length", shape);
                 shape.points = this.RegularPolygon(sideLength, 4, 0);                                
                 break; 
             case ShapeType.triangle:
