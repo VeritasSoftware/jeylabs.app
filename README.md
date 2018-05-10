@@ -13,7 +13,7 @@
 
 **Screenshot:**
 
-[Login initial](https://github.com/VeritasSoftware/jeylabs.app/blob/master/src/Screenshot.jpg)
+![Screenshot](https://github.com/VeritasSoftware/jeylabs.app/blob/master/src/Screenshot.jpg)
 
 This Angular 5 project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.3.
 
