@@ -1,6 +1,14 @@
 # Jeylabs.App
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.3.
+# Angular 5 CLI app
+
+* The solution comprises of a **Graphics Service** (back end) and a **Shapes Viewer component** (UI front end)
+* The Service is injected into the component.
+* The user entered natural language command is passed from the UI to the Service.
+* The Service parses the command, calculates the vertices (Points) on the Shape and returns a Shape with these Points.
+* These points are then drawn on a 2D canvas to draw the Shape.
+
+This Angular 5 project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.3.
 
 ## Development server
 
