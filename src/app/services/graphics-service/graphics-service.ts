@@ -8,7 +8,22 @@ export class GraphicsService implements IGraphicsService {
     Draw(command: string): IShape {
         var shape = this.Parse(command);
 
-        switch(shape.shapeType) {
+        switch(shape.shapeType) {  
+            case ShapeType.circle:
+                shape.points = this.RegularPolygon(shape.measurementAmounts[0].amount, 360, 0);
+                break;          
+            case ShapeType.heptagon:
+                shape.points = this.RegularPolygon(shape.measurementAmounts[0].amount, 7, 0);
+                break;
+            case ShapeType.hexagon:
+                shape.points = this.RegularPolygon(shape.measurementAmounts[0].amount, 6, 0);
+                break;
+            case ShapeType.octogon:
+                shape.points = this.RegularPolygon(shape.measurementAmounts[0].amount, 8, 0);
+                break; 
+            case ShapeType.oval:
+                shape.points = this.Oval(shape.measurementAmounts[0].amount, shape.measurementAmounts[1].amount);
+                break;                               
             case ShapeType.pentagon:
                 shape.points = this.RegularPolygon(shape.measurementAmounts[0].amount, 5, 0);
                 break; 
@@ -24,27 +39,35 @@ export class GraphicsService implements IGraphicsService {
     }
 
     Parse(command: string): IShape {
-        var matches = command.match(/^Draw an? ([a-zA-Z\s]+?) (?:(?:with|and )? an? ([a-zA-Z\s]+?) of (\d+))+$/i);        
+        //Note:
+        //Repeating a capturing group stores only the last captured  in javascript regex flavor.
+        //https://stackoverflow.com/questions/3537878/how-to-capture-an-arbitrary-number-of-groups-in-javascript-regexp
+        //Hence below regex cannot be used in javascript flavor.
+        //.Net flavour however stores the intermediate captures.
+        //var matches = command.match(/^Draw an? ([a-zA-Z ]+?)\s(?:(with|\sand) an? ([a-zA-Z ]+?) of (\d+))+$/gi);  
+
+        var regexName = /^Draw an? ([a-zA-Z ]+?)\swith/i;
+
+        var regex = /(?:with|\sand) an? ([a-zA-Z ]+?) of (\d+)/gi;
+
+        var nameMatch = command.match(regexName);
         
         var shape = new Shape();
         shape.measurementAmounts = new Array<MeasurementAmount>();
         shape.points = new Array<Point>();
 
-        shape.name = matches[1].toLowerCase();
+        shape.name = nameMatch[1].toLowerCase();
         shape.shapeType = ShapeType[shape.name];
 
-        for (var i=2; i<matches.length; i=i+2){
-            if (matches[i] == null) {
-                break;
-            }
-            
+        var matches;
+        while ((matches = regex.exec(command)) != null) {
             var measurementAmount = new MeasurementAmount();
 
-            measurementAmount.measurement = matches[i].toLowerCase();
-            measurementAmount.amount = parseInt(matches[i+1]);
+            measurementAmount.measurement = matches[1].toLowerCase();
+            measurementAmount.amount = parseInt(matches[2]);
 
             shape.measurementAmounts.push(measurementAmount);
-        }
+        }        
                 
         return shape;
     }
@@ -63,6 +86,24 @@ export class GraphicsService implements IGraphicsService {
             points.push(p);
 
             angle = angle + angle_increment;
+        }
+
+        return points;
+    }
+
+    Oval(majorAxisLength: number, minorAxisLength): Array<Point> {
+        var step = 2*Math.PI/360;
+        var h = majorAxisLength;
+        var k = minorAxisLength;        
+        var r = minorAxisLength;
+        var points = new Array<Point>();
+
+        for(var theta=0;  theta < 2*Math.PI;  theta+=step)
+        { 
+            var x = h + r*Math.cos(theta) ;
+            var y = k - 0.5 * r*Math.sin(theta);
+            var p = new Point(x, y);
+            points.push(p);
         }
 
         return points;

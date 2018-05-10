@@ -23,6 +23,11 @@ export interface IMeasurementAmount {
 }
 
 export enum ShapeType {
+    circle,
+    heptagon,
+    hexagon,
+    octogon,
+    oval,
     pentagon,
     square,
     triangle
