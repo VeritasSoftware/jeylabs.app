@@ -1,13 +1,17 @@
 <div class="panel panel-primary" style="text-align:center">    
     <div class="panel-body">
-        <table style="width:100%">        
+        <div class="form-group">
+            <label for="Command" class="col-md-4">Enter natural language command</label>                                      
+            <input type="text" id="Command" class="form-control col-md-4" [(ngModel)]="command" name="Command" placeholder="Command" />
+            <input type="button" id="btnSubmit" class="btn btn-primary" (click)="drawMe()" value="Draw Me" name="btnSubmit"/>                  
+        </div>
+        <div class="form-group">
+            <canvas #myCanvas width="500" height="500"></canvas>
+        </div>
+        <!-- <table style="width:100%">        
             <tr>
               <td>
-                  <div class="form-group">
-                      <label for="Command" class="col-md-4">Enter natural language command</label>                                      
-                      <input type="text" id="Command" class="form-control" [(ngModel)]="command" name="Command" placeholder="Command" />
-                      <input type="button" id="btnSubmit" class="btn btn-primary" (click)="drawMe()" value="Draw Me" name="btnSubmit"/>                  
-                  </div>
+
               </td>
             </tr>
             <tr>
@@ -15,7 +19,7 @@
                   <canvas #myCanvas width="500" height="500"></canvas>
               </td>
             </tr>            
-          </table>
+          </table> -->
     </div>
   </div>  
 

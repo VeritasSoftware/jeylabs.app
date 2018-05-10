@@ -11,6 +11,10 @@
     * and returns a Shape with these Points.
 * These points are then drawn on a 2D canvas to draw the Shape.
 
+**Screenshot:**
+
+[Login initial](https://github.com/VeritasSoftware/jeylabs.app/blob/master/src/Screenshot.jpg)
+
 This Angular 5 project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.3.
 
 ## Development server

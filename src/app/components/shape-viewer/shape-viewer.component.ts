@@ -23,6 +23,9 @@ export class ShapeViewerComponent implements OnInit {
         throw "Command not entered";
       }
       let ctx: CanvasRenderingContext2D = this.canvasRef.nativeElement.getContext('2d');
+
+      // Clear any previous content.
+      ctx.clearRect(0, 0, 500, 500);
   
       //var result = this.graphicsService.Draw("Draw an isosceles triangle with a height of 200 and a width of 100");
       //var result = this.graphicsService.Draw("Draw a square with a side length of 150");
@@ -37,6 +40,8 @@ export class ShapeViewerComponent implements OnInit {
       }
         
       ctx.fill();
+      ctx.closePath();
+      ctx.stroke();
     }
     catch(e){
       alert(e);
