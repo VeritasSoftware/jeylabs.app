@@ -3,11 +3,16 @@
         <div class="form-group">                                      
             <input type="text" id="Command" class="form-control col-md-4" [(ngModel)]="command" name="Command" placeholder="Natural language command" />
             <input type="button" id="btnSubmit" class="btn btn-primary" (click)="drawMe()" value="Draw Me" name="btnSubmit"/>                  
-        </div>
-        <div class="form-group">
-            <canvas #myCanvas width="500" height="500"></canvas>
         </div>        
     </div>
-  </div>  
+</div>  
+
+<div class="panel panel-primary" style="text-align:center">    
+        <div class="panel-body">
+                <div class="form-group"> 
+                    <canvas #myCanvas width="500" height="500"></canvas>
+                </div>
+        </div>
+</div>        
 
 
