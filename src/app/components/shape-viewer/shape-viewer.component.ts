@@ -14,21 +14,32 @@ export class ShapeViewerComponent implements OnInit {
   constructor(private graphicsService: GraphicsService) { }
 
   ngOnInit() {
-    this.command = "";
-    let ctx: CanvasRenderingContext2D =
-    this.canvasRef.nativeElement.getContext('2d');
+    this.command = "";    
+  }
 
-    //var result = this.graphicsService.Draw("Draw an isosceles triangle with a height of 200 and a width of 100");
-    //var result = this.graphicsService.Draw("Draw a square with a side length of 150");
-    var result = this.graphicsService.Draw("Draw an oval with a major axis of 150 and a minor axis of 100");
-
-    ctx.beginPath();
-    ctx.moveTo(result.points[0].X, result.points[0].Y);
-
-    for(var i=1; i<result.points.length; i++){
-      ctx.lineTo(result.points[i].X, result.points[i].Y);
+  drawMe() {
+    try {
+      if (this.command == null || this.command.match(/^\s*$/) != null){
+        throw "Command not entered";
+      }
+      let ctx: CanvasRenderingContext2D = this.canvasRef.nativeElement.getContext('2d');
+  
+      //var result = this.graphicsService.Draw("Draw an isosceles triangle with a height of 200 and a width of 100");
+      //var result = this.graphicsService.Draw("Draw a square with a side length of 150");
+      //Draw an oval with a major axis of 150 and a minor axis of 100
+      var result = this.graphicsService.Draw(this.command);
+  
+      ctx.beginPath();
+      ctx.moveTo(result.points[0].X, result.points[0].Y);
+  
+      for(var i=1; i<result.points.length; i++){
+        ctx.lineTo(result.points[i].X, result.points[i].Y);
+      }
+        
+      ctx.fill();
     }
-      
-    ctx.fill();
+    catch(e){
+      alert(e);
+    }
   }
 }
