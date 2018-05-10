@@ -50,7 +50,7 @@ export class GraphicsService implements IGraphicsService {
     GetMeasurement(measurementName: string, shape: IShape): number {
         var measurement = shape.measurementAmounts.find(x => x.measurement == measurementName);
         if (measurement == null) {
-            throw "Invalid measurement name. Refer to table of supprorted natural language commands for shapes."
+            throw "Invalid measurement name for shape. Refer to table of supprorted natural language commands for shapes."
         }
 
         return measurement.amount;
@@ -109,7 +109,7 @@ export class GraphicsService implements IGraphicsService {
         return points;
     }
 
-    Oval(majorAxisLength: number, minorAxisLength): Array<Point> {
+    Oval(majorAxisLength: number, minorAxisLength: number): Array<Point> {
         var step = 2*Math.PI/360;
         var h = majorAxisLength;
         var k = minorAxisLength;        
