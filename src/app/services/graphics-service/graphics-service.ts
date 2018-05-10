@@ -10,28 +10,28 @@ export class GraphicsService implements IGraphicsService {
 
         switch(shape.shapeType) {  
             case ShapeType.circle:
-                var radius = shape.measurementAmounts.find(x => x.measurement == "radius").amount;
+                var radius = this.GetMeasurement("radius", shape);
                 shape.points = this.RegularPolygon(radius, 360, 0);
                 break;          
             case ShapeType.heptagon:
-                var sideLength = shape.measurementAmounts.find(x => x.measurement == "side length").amount;
+                var sideLength = this.GetMeasurement("side length", shape);
                 shape.points = this.RegularPolygon(sideLength, 7, 0);
                 break;
             case ShapeType.hexagon:
-                var sideLength = shape.measurementAmounts.find(x => x.measurement == "side length").amount;
+                var sideLength = this.GetMeasurement("side length", shape);
                 shape.points = this.RegularPolygon(sideLength, 6, 0);
                 break;
             case ShapeType.octogon:
-                var sideLength = shape.measurementAmounts.find(x => x.measurement == "side length").amount;
+                var sideLength = this.GetMeasurement("side length", shape);
                 shape.points = this.RegularPolygon(sideLength, 8, 0);
                 break; 
-            case ShapeType.oval:                
-                var majorAxis = shape.measurementAmounts.find(x => x.measurement == "major axis").amount;
-                var minorAxis = shape.measurementAmounts.find(x => x.measurement == "minor axis").amount;
+            case ShapeType.oval:     
+                var majorAxis = this.GetMeasurement("major axis", shape);
+                var minorAxis = this.GetMeasurement("minor axis", shape);           
                 shape.points = this.Oval(majorAxis, minorAxis);
                 break;                               
             case ShapeType.pentagon:
-                var sideLength = shape.measurementAmounts.find(x => x.measurement == "side length").amount;
+                var sideLength = this.GetMeasurement("side length", shape);
                 shape.points = this.RegularPolygon(sideLength, 5, 0);
                 break; 
             case ShapeType.square:
@@ -39,12 +39,21 @@ export class GraphicsService implements IGraphicsService {
                 shape.points = this.RegularPolygon(sideLength, 4, 0);                                
                 break; 
             case ShapeType.triangle:
-                var sideLength = shape.measurementAmounts.find(x => x.measurement == "side length").amount;
+                var sideLength = this.GetMeasurement("side length", shape);
                 shape.points = this.RegularPolygon(sideLength, 3, 0);
                 break;                           
         }
 
         return shape;
+    }
+
+    GetMeasurement(measurementName: string, shape: IShape): number {
+        var measurement = shape.measurementAmounts.find(x => x.measurement == measurementName);
+        if (measurement == null) {
+            throw "Invalid measurement name. Refer to table of supprorted natural language commands for shapes."
+        }
+
+        return measurement.amount;
     }
 
     Parse(command: string): IShape {
