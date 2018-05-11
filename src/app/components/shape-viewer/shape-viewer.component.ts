@@ -14,7 +14,20 @@ export class ShapeViewerComponent implements OnInit {
   constructor(private graphicsService: GraphicsService) { }
 
   ngOnInit() {
-    this.command = "";    
+    this.command = "";   
+    
+    var canvas = document.querySelector('canvas');
+
+    this.fitToContainer(canvas);
+  }
+
+  fitToContainer(canvas) {
+    // Make it visually fill the positioned parent
+    canvas.style.width ='100%';
+    canvas.style.height='100%';
+    // ...then set the internal size to match
+    canvas.width  = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
   }
 
   drawMe() {
@@ -23,9 +36,10 @@ export class ShapeViewerComponent implements OnInit {
         throw "Command not entered";
       }
       let ctx: CanvasRenderingContext2D = this.canvasRef.nativeElement.getContext('2d');
+      var canvas = document.querySelector('canvas');
 
       // Clear any previous content.
-      ctx.clearRect(0, 0, 500, 500);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
   
       //var result = this.graphicsService.Draw("Draw an isosceles triangle with a height of 200 and a width of 100");
       //var result = this.graphicsService.Draw("Draw a square with a side length of 150");
